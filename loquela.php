@@ -33,7 +33,21 @@ class Loquela
   public function Detect( $text )
   {
     //  get the contents
-    $jsonContent = $this->GetWithCurl($text);
+    //  the request.
+    $data = array( 'q' => $text, 'key' => $this->_apikey );
+    $jsonContent = $this->GetWithCurl($data);
+
+    // if we are here we didn't throw.
+    $content = json_decode($jsonContent);
+
+    //  return the decoded json
+    return $content;
+  }
+
+  public function Status()
+  {
+    $data = array( 'get' => 'status', 'key' => $this->_apikey );
+    $jsonContent = $this->GetWithCurl($data);
 
     // if we are here we didn't throw.
     $content = json_decode($jsonContent);
@@ -44,20 +58,17 @@ class Loquela
 
   /**
    * Get the data using curl
-   * @param array|string $text the text we are trying to detect.
+   * @param array $data the formated data we want to request.
    * @throws string if there was an error with the detected text.
    * @return string the raw text response from the site.
    */
-  private function GetWithCurl( $text )
+  private function GetWithCurl( $data )
   {
     // timeout is short
     $timeout = 10;
 
     // init curl
     $handle = curl_init();
-
-    //  the request.
-    $data = array( 'q' => $text, 'key' => $this->_apikey );
 
     $args = array(
         CURLOPT_URL => self::V1_URL,

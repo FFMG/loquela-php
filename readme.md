@@ -21,6 +21,10 @@ Detects language of given text. Returns detected language codes and scores.
     $result = $l->Detect( array( 'If we have no peace, it is because we have forgotten that we belong to each other.',
                                  'Be faithful in small things because it is in them that your strength lies.' );
 
+### Multiple Languages detection
+    $l = new Loquela( 'YOUR-API-KEY' );
+    $result = $l->Status();
+                                 
 ### Results
 #### Detections
     (object) {
@@ -34,6 +38,12 @@ Detects language of given text. Returns detected language codes and scores.
           }
         }
       }
+    }
+
+#### Status
+    (object) {
+    ->requests (string) = "140"
+    ->bytes (string) = "18443"
     }
 
 #### Error
