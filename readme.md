@@ -16,17 +16,22 @@ require_once("/path/to/file/loquela.php");
 ## Usage
 
 ### Single Language detection
-$l = new Loquela( 'YOUR-API-KEY' );
-$result = $l->Detect( 'Hello world' );
+  
+  $l = new Loquela( 'YOUR-API-KEY' );
+  
+  $result = $l->Detect( 'Hello world' );
 
 ### Multiple Languages detection
-$l = new Loquela( 'YOUR-API-KEY' );
-$result = $l->Detect( array( 'If we have no peace, it is because we have forgotten that we belong to each other.',
+
+  $l = new Loquela( 'YOUR-API-KEY' );
+  
+  $result = $l->Detect( array( 'If we have no peace, it is because we have forgotten that we belong to each other.',
                              'Be faithful in small things because it is in them that your strength lies.' );
 
 ### Results
 
 #### Detections
+  
   (object) {
     ->data (object) {
         ->detections (array(1)) {
@@ -41,6 +46,7 @@ $result = $l->Detect( array( 'If we have no peace, it is because we have forgott
   }
 
 #### Error
+   
    (object) {
     ->data (object) {
         ->detections (array(1)) {
